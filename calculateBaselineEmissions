@@ -1,0 +1,54 @@
+function calculateBaselineEmissions(buildingSpace,emissions,scenarios){
+    let labEnergy = [];
+    let residEnergy = [];
+    let classEnergy = [];
+    let healthEnergy = [];
+    let plantEnergy = [];
+    let totalEnergy = [];
+    let elecFudgeFactor = buildingSpace.elecFudgeFactor;
+	let commissioningKFactors = scenarios.commissioning.getKFactors();
+    
+    let studentGrowth = [...BAUGrowth.studentGrowth.selected];
+    //console.log(studentGrowth)
+    let facultyGrowth = [...BAUGrowth.facultyGrowth.selected];
+    let researchGrowth = [...BAUGrowth.researchGrowth.selected];
+    if(studentGrowth.length<43){
+        //custom is selected
+        studentGrowth = interpolateArray(studentGrowth);
+        //console.log(studentGrowth);
+    }
+    if(facultyGrowth.length<43){
+        //custom is selected
+        facultyGrowth = interpolateArray(facultyGrowth);
+    }
+    if(researchGrowth.length<43){
+        //custom is selected
+        researchGrowth = interpolateArray(researchGrowth);
+        //console.log(researchGrowth);
+    }
+    
+	for(i=0;i<buildingSpace.year.length;i++){
+		//Scope 2
+		labEnergy[i] = buildingSpace.labLayer.sqft[i]*(buildingSpace.labLayer.lightEUI[i]+buildingSpace.labLayer.hvacEUI[i]+buildingSpace.labLayer.plugEUI[i]);
+		residEnergy[i] = buildingSpace.residLayer.sqft[i]*(buildingSpace.residLayer.lightEUI[i]+buildingSpace.residLayer.hvacEUI[i]+buildingSpace.residLayer.plugEUI[i]);
+		classEnergy[i] = buildingSpace.classLayer.sqft[i]*(buildingSpace.classLayer.lightEUI[i]+buildingSpace.classLayer.hvacEUI[i]+buildingSpace.classLayer.plugEUI[i]);
+		healthEnergy[i] = buildingSpace.healthLayer.sqft[i]*(buildingSpace.healthLayer.lightEUI[i]+buildingSpace.healthLayer.hvacEUI[i]+buildingSpace.healthLayer.plugEUI[i]);
+		plantEnergy[i] = buildingSpace.plantLayer.sqft[i]*buildingSpace.plantLayer.EUI[i];
+		totalEnergy[i] = elecFudgeFactor*commissioningKFactors[i]*(labEnergy[i]+residEnergy[i]+classEnergy[i]+healthEnergy[i]+plantEnergy[i]);
+		buildingSpace.baselineKWh[i] = totalEnergy[i];
+    
+        //Scope 1
+        emissions.scope1Baseline[i] = emissions.scope1HeatingFraction*buildingSpace.totalSqft[i]*(emissions.scope1Default[6]/buildingSpace.totalSqft[6]) + emissions.scope1FleetFraction*(studentGrowth[i][1]+facultyGrowth[i][1])*(emissions.scope1Default[6]/(studentGrowth[6][1]+facultyGrowth[6][1]));
+        
+        //Scope 2
+		emissions.scope2Baseline[i] = buildingSpace.baselineKWh[i]*emissions.emissionsFactors.selected[i]/1000000;
+        
+        //Scope 3
+        emissions.scope3Baseline[i] = emissions.scope3CommutingFraction*(studentGrowth[i][1]+facultyGrowth[i][1])*(emissions.scope3Default[6]/(studentGrowth[6][1]+BAUGrowth.facultyGrowth.selected[6][1])) + emissions.scope3TravelFraction*(studentGrowth[i][1]+facultyGrowth[i][1])*(emissions.scope3Default[6]/(studentGrowth[6][1]+facultyGrowth[6][1]));
+		
+		//Total Emissions
+		emissions.totalBaselineEmissions[i] = emissions.scope1Baseline[i] + emissions.scope2Baseline[i] + emissions.scope3Baseline[i];
+    }
+
+    return emissions;    
+}
