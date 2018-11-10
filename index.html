@@ -77,10 +77,7 @@
             <div class="row" style="display:flex;flex-wrap:wrap">                
                 <div id="emissionsColumn" class="col-lg-4">
                     <h2 id="emissionsColumnHeader" class="text-center column-header">Climate Action Timeline</h2>
-                    <div class="row">
-                        <div id='wedgePlot' style="left:-20px;width:440px;height:300px"></div>
-                    </div>
-                    <div id="emissionsButtonsRow" class="row text-center" style="margin:5% 0">
+                    <div id="emissionsButtonsRow" class="row text-center" style="margin:2% 0% 3% 0%">
                         <div class="col-lg-4">
                             <button type="button" name="reScale" class="btn btn-sm btn-secondary" id="reScale" style="box-shadow:none;">Re-Scale</button>
                         </div>
@@ -92,14 +89,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div id='scopesWedgePlot' style="left:-20px;width:440px;height:300px"></div>
-                    </div>      
+                        <div id='wedgePlot' style="width:440px;height:300px"></div>
+                    </div>
+                    <div class="row">
+                        <div id='scopesWedgePlot' style="width:440px;height:300px;margin-top:2%"></div>
+                    </div>
+                    <div id="emissionsNormalizationButtons" class="row text-center" style="margin:5% 0% 2% 0%">
+                        <div class="col-lg-12">
+                            <div class="btn-group">
+                                <button name="normalizeBySqft" class="btn btn-sm activeToggleBtn" id="normalizeBySqft">Per Sqft</button>
+                                <button name="normalizeByStudent" class="btn btn-sm inactiveToggleBtn" id="normalizeByStudent">Per Student</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20">
+                        <div id='normalizedEmissionsPlot' style="width:440px;height:300px"></div>
+                    </div> 
                 </div>
                 <div id="scenarioColumn" class="col-lg-5" style="border-left:double;border-right:double">
                     <h2 id="scenarioColumnHeader" class="text-center column-header">Project Composer</h2>
                     <div class="row">
-                        <div class="col-lg-4 text-center">
-                            <div class="row btn-group-vertical btn-group-toggle" role="group" style="">
+                        <div class="col-lg-4 text-center" style="">
+                            <div class="btn-group-vertical btn-group-toggle my-auto" role="group" style="">
                                 <button id="overviewButton" class="btn text-center activeProject" type="button" data-toggle="collapse" aria-pressed="true" href=".projectsOverview" style="text-align: left; white-space: normal !important;word-wrap: break-word;word-break: normal;font-size:150%;border-bottom:solid">Projects</button>
                                 <button id="ledButton" type="button" class="btn inactiveProject" data-toggle="collapse" aria-pressed="false" href=".scenario-1" style="text-align: left; white-space: normal !important;word-wrap: break-word;word-break: normal">P1. LED</button>
                                 <button id="solarRoofButton" type="button" class="btn inactiveProject" data-toggle="collapse" href=".scenario-2" style="text-align: left; white-space: normal !important;word-wrap: break-word;word-break: normal">P2. Solar Roof</button>
@@ -110,11 +121,8 @@
                                 <button id="electricCommuteButton" type="button" class="btn inactiveProject" data-toggle="collapse" href=".scenario-7" style="text-align: left; white-space: normal !important;word-wrap: break-word;word-break: normal">P7. Electric Commute</button>
                                 <button id="offsetsButton" type="button" class="btn inactiveProject" data-toggle="collapse" href=".scenario-8" style="text-align: left; white-space: normal !important;word-wrap: break-word;word-break: normal">P8. Offsets</button>
                             </div>
-                            <div class="row">
-                                <br/>
-                            </div>
                         </div>
-                        <div class="col-lg-8 text-center">
+                        <div class="col-lg-8 text-center ">
                             <div class="row justify-content-center" style="margin-bottom:5%;margin-right:5%">
                                 <div class="btn-group-vertical projectsOverview collapse show" data-parent="#scenarioColumn" role="group">
                                     <input type="button" class="btn inactiveToggleBtn" name="demoAllProjects" id="demoAllProjects" value="Demo All Projects">
@@ -161,15 +169,15 @@
                                     </p>
                                 </div>
                                 <!--~~~~~~~~~~~~~Scenario 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div id="ledCarousel" class="carousel slide scenario-1 collapse" data-parent="#scenarioColumn" data-interval="false">
+                                <div id="ledCarousel" class="carousel slide scenario-1 collapse" data-ride='carousel' data-parent="#scenarioColumn" data-interval="4000">
                                   <ol class="carousel-indicators">
-                                    <li data-target="#ledCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#ledCarousel" data-slide-to="1"></li>
-                                    <li data-target="#ledCarousel" data-slide-to="2"></li>
-                                    <li data-target="#ledCarousel" data-slide-to="3"></li>
-                                    <li data-target="#ledCarousel" data-slide-to="4"></li>
-                                    <li data-target="#ledCarousel" data-slide-to="5"></li>
-                                    <li data-target="#ledCarousel" data-slide-to="6"></li>
+                                    <li data-target="#ledCarousel" data-slide-to="0" class="active" onclick="$('#ledCarousel').carousel('pause')"></li>
+                                    <li data-target="#ledCarousel" data-slide-to="1" onclick="$('#ledCarousel').carousel('pause')"></li>
+                                    <li data-target="#ledCarousel" data-slide-to="2" onclick="$('#ledCarousel').carousel('pause')"></li>
+                                    <li data-target="#ledCarousel" data-slide-to="3" onclick="$('#ledCarousel').carousel('pause')"></li>
+                                    <li data-target="#ledCarousel" data-slide-to="4" onclick="$('#ledCarousel').carousel('pause')"></li>
+                                    <li data-target="#ledCarousel" data-slide-to="5" onclick="$('#ledCarousel').carousel('pause')"></li>
+                                    <li data-target="#ledCarousel" data-slide-to="6" onclick="$('#ledCarousel').carousel('pause')"></li>
                                   </ol>
                                   <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -194,23 +202,23 @@
                                       <img class="d-block w-100" src="./pictures/ledCarouselSlide7.png" alt="Seventh slide">
                                     </div>
                                   </div>
-                                  <a class="carousel-control-prev" href="#ledCarousel" role="button" data-slide="prev">
+                                  <a class="carousel-control-prev" href="#ledCarousel" role="button" data-slide="prev" onclick="$('#ledCarousel').carousel('pause')">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                   </a>
-                                  <a class="carousel-control-next" href="#ledCarousel" role="button" data-slide="next">
+                                  <a class="carousel-control-next" href="#ledCarousel" role="button" data-slide="next" onclick="$('#ledCarousel').carousel('pause')">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
                                 </div>
                                 <!--~~~~~~~~~~~~~Scenario 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div id="solarRoofCarousel" class="carousel slide scenario-2 collapse" data-parent="#scenarioColumn" data-interval="false">
+                                <div id="solarRoofCarousel" class="carousel slide scenario-2 collapse" data-ride='carousel' data-parent="#scenarioColumn" data-interval="4000">
                                   <ol class="carousel-indicators">
-                                    <li data-target="#solarRoofCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#solarRoofCarousel" data-slide-to="1"></li>
-                                    <li data-target="#solarRoofCarousel" data-slide-to="2"></li>
-                                    <li data-target="#solarRoofCarousel" data-slide-to="3"></li>
-                                    <li data-target="#solarRoofCarousel" data-slide-to="4"></li>
+                                    <li data-target="#solarRoofCarousel" data-slide-to="0" class="active" onclick="$('#solarRoofCarousel').carousel('pause')"></li>
+                                    <li data-target="#solarRoofCarousel" data-slide-to="1" onclick="$('#solarRoofCarousel').carousel('pause')"></li>
+                                    <li data-target="#solarRoofCarousel" data-slide-to="2" onclick="$('#solarRoofCarousel').carousel('pause')"></li>
+                                    <li data-target="#solarRoofCarousel" data-slide-to="3" onclick="$('#solarRoofCarousel').carousel('pause')"></li>
+                                    <li data-target="#solarRoofCarousel" data-slide-to="4" onclick="$('#solarRoofCarousel').carousel('pause')"></li>
                                   </ol>
                                   <div class="carousel-inner" data-parent="#scenarioColumn">
                                     <div class="carousel-item active">
@@ -229,24 +237,24 @@
                                       <img class="d-block w-100" src="./pictures/solarRoofCarouselSlide5.png" alt="Fifth slide">
                                     </div>
                                   </div>
-                                  <a class="carousel-control-prev" href="#solarRoofCarousel" role="button" data-slide="prev">
+                                  <a class="carousel-control-prev" href="#solarRoofCarousel" role="button" data-slide="prev" onclick="$('#solarRoofCarousel').carousel('pause')">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                   </a>
-                                  <a class="carousel-control-next" href="#solarRoofCarousel" role="button" data-slide="next">
+                                  <a class="carousel-control-next" href="#solarRoofCarousel" role="button" data-slide="next" onclick="$('#solarRoofCarousel').carousel('pause')">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
                                 </div>
                                 <!--~~~~~~~~~~~~~Scenario 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div id="commissioningCarousel" class="carousel slide scenario-3 collapse" data-parent="#scenarioColumn" data-interval="false">
+                                <div id="commissioningCarousel" class="carousel slide scenario-3 collapse" data-ride='carousel' data-parent="#scenarioColumn" data-interval="4000">
                                   <ol class="carousel-indicators">
-                                    <li data-target="#commissioningCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#commissioningCarousel" data-slide-to="1"></li>
-                                    <li data-target="#commissioningCarousel" data-slide-to="2"></li>
-                                    <li data-target="#commissioningCarousel" data-slide-to="3"></li>
-                                    <li data-target="#commissioningCarousel" data-slide-to="4"></li>
-                                    <li data-target="#commissioningCarousel" data-slide-to="5"></li>
+                                    <li data-target="#commissioningCarousel" data-slide-to="0" class="active" onclick="$('#commissioningCarousel').carousel('pause')"></li>
+                                    <li data-target="#commissioningCarousel" data-slide-to="1" onclick="$('#commissioningCarousel').carousel('pause')"></li>
+                                    <li data-target="#commissioningCarousel" data-slide-to="2" onclick="$('#commissioningCarousel').carousel('pause')"></li>
+                                    <li data-target="#commissioningCarousel" data-slide-to="3" onclick="$('#commissioningCarousel').carousel('pause')"></li>
+                                    <li data-target="#commissioningCarousel" data-slide-to="4" onclick="$('#commissioningCarousel').carousel('pause')"></li>
+                                    <li data-target="#commissioningCarousel" data-slide-to="5" onclick="$('#commissioningCarousel').carousel('pause')"></li>
                                   </ol>
                                   <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -268,23 +276,23 @@
                                       <img class="d-block w-100" src="./pictures/commissioningCarouselSlide6.png" alt="Sixth slide">
                                     </div>
                                   </div>
-                                  <a class="carousel-control-prev" href="#commissioningCarousel" role="button" data-slide="prev">
+                                  <a class="carousel-control-prev" href="#commissioningCarousel" role="button" data-slide="prev" onclick="$('#commissioningCarousel').carousel('pause')">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                   </a>
-                                  <a class="carousel-control-next" href="#commissioningCarousel" role="button" data-slide="next">
+                                  <a class="carousel-control-next" href="#commissioningCarousel" role="button" data-slide="next" onclick="$('#commissioningCarousel').carousel('pause')">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
                                 </div>
                                 <!--~~~~~~~~~~~~~Scenario 4~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div id="plantAutomationCarousel" class="carousel slide scenario-4 collapse" data-parent="#scenarioColumn" data-interval="false">
+                                <div id="plantAutomationCarousel" class="carousel slide scenario-4 collapse" data-ride='carousel' data-parent="#scenarioColumn" data-interval="4000">
                                   <ol class="carousel-indicators">
-                                    <li data-target="#plantAutomationCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#plantAutomationCarousel" data-slide-to="1"></li>
-                                    <li data-target="#plantAutomationCarousel" data-slide-to="2"></li>
-                                    <li data-target="#plantAutomationCarousel" data-slide-to="3"></li>
-                                    <li data-target="#plantAutomationCarousel" data-slide-to="4"></li>
+                                    <li data-target="#plantAutomationCarousel" data-slide-to="0" class="active" onclick="$('#plantAutomationCarousel').carousel('pause')"></li>
+                                    <li data-target="#plantAutomationCarousel" data-slide-to="1" onclick="$('#plantAutomationCarousel').carousel('pause')"></li>
+                                    <li data-target="#plantAutomationCarousel" data-slide-to="2" onclick="$('#plantAutomationCarousel').carousel('pause')"></li>
+                                    <li data-target="#plantAutomationCarousel" data-slide-to="3" onclick="$('#plantAutomationCarousel').carousel('pause')"></li>
+                                    <li data-target="#plantAutomationCarousel" data-slide-to="4" onclick="$('#plantAutomationCarousel').carousel('pause')"></li>
                                   </ol>
                                   <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -303,24 +311,24 @@
                                       <img class="d-block w-100" src="./pictures/plantAutomationCarouselSlide5.png" alt="Fifth slide">
                                     </div>
                                   </div>
-                                  <a class="carousel-control-prev" href="#plantAutomationCarousel" role="button" data-slide="prev">
+                                  <a class="carousel-control-prev" href="#plantAutomationCarousel" role="button" data-slide="prev" onclick="$('#plantAutomationCarousel').carousel('pause')">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                   </a>
-                                  <a class="carousel-control-next" href="#plantAutomationCarousel" role="button" data-slide="next">
+                                  <a class="carousel-control-next" href="#plantAutomationCarousel" role="button" data-slide="next" onclick="$('#plantAutomationCarousel').carousel('pause')">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
                                 </div>
                                 <!--~~~~~~~~~~~~~Scenario 5~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div id="smartLabsCarousel" class="carousel slide scenario-5 collapse" data-parent="#scenarioColumn" data-interval="false">
+                                <div id="smartLabsCarousel" class="carousel slide scenario-5 collapse" data-ride='carousel' data-parent="#scenarioColumn" data-interval="4000">
                                   <ol class="carousel-indicators">
-                                    <li data-target="#smartLabsCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#smartLabsCarousel" data-slide-to="1"></li>
-                                    <li data-target="#smartLabsCarousel" data-slide-to="2"></li>
-                                    <li data-target="#smartLabsCarousel" data-slide-to="3"></li>
-                                    <li data-target="#smartLabsCarousel" data-slide-to="4"></li>
-                                    <li data-target="#smartLabsCarousel" data-slide-to="5"></li>
+                                    <li data-target="#smartLabsCarousel" data-slide-to="0" class="active" onclick="$('#smartLabsCarousel').carousel('pause')"></li>
+                                    <li data-target="#smartLabsCarousel" data-slide-to="1" onclick="$('#smartLabsCarousel').carousel('pause')"></li>
+                                    <li data-target="#smartLabsCarousel" data-slide-to="2" onclick="$('#smartLabsCarousel').carousel('pause')"></li>
+                                    <li data-target="#smartLabsCarousel" data-slide-to="3" onclick="$('#smartLabsCarousel').carousel('pause')"></li>
+                                    <li data-target="#smartLabsCarousel" data-slide-to="4" onclick="$('#smartLabsCarousel').carousel('pause')"></li>
+                                    <li data-target="#smartLabsCarousel" data-slide-to="5" onclick="$('#smartLabsCarousel').carousel('pause')"></li>
                                   </ol>
                                   <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -342,21 +350,21 @@
                                       <img class="d-block w-100" src="./pictures/smartLabsCarouselSlide6.png" alt="Sixth slide">
                                     </div>
                                   </div>
-                                  <a class="carousel-control-prev" href="#smartLabsCarousel" role="button" data-slide="prev">
+                                  <a class="carousel-control-prev" href="#smartLabsCarousel" role="button" data-slide="prev" onclick="$('#smartLabsCarousel').carousel('pause')">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                   </a>
-                                  <a class="carousel-control-next" href="#smartLabsCarousel" role="button" data-slide="next">
+                                  <a class="carousel-control-next" href="#smartLabsCarousel" role="button" data-slide="next" onclick="$('#smartLabsCarousel').carousel('pause')">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
                                 </div>
                                 <!--~~~~~~~~~~~~~Scenario 6~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div id="electricFleetCarousel" class="carousel slide scenario-6 collapse" data-parent="#scenarioColumn" data-interval="false">
+                                <div id="electricFleetCarousel" class="carousel slide scenario-6 collapse" data-ride='carousel' data-parent="#scenarioColumn" data-interval="4000">
                                   <ol class="carousel-indicators">
-                                    <li data-target="#electricFleetCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#electricFleetCarousel" data-slide-to="1"></li>
-                                    <li data-target="#electricFleetCarousel" data-slide-to="2"></li>
+                                    <li data-target="#electricFleetCarousel" data-slide-to="0" class="active" onclick="$('#electricFleetCarousel').carousel('pause')"></li>
+                                    <li data-target="#electricFleetCarousel" data-slide-to="1" onclick="$('#electricFleetCarousel').carousel('pause')"></li>
+                                    <li data-target="#electricFleetCarousel" data-slide-to="2" onclick="$('#electricFleetCarousel').carousel('pause')"></li>
                                   </ol>
                                   <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -369,24 +377,24 @@
                                       <img class="d-block w-100" src="./pictures/electricFleetCarouselSlide3.png" alt="Third slide">
                                     </div>
                                   </div>
-                                  <a class="carousel-control-prev" href="#electricFleetCarousel" role="button" data-slide="prev">
+                                  <a class="carousel-control-prev" href="#electricFleetCarousel" role="button" data-slide="prev" onclick="$('#electricFleetCarousel').carousel('pause')">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                   </a>
-                                  <a class="carousel-control-next" href="#electricFleetCarousel" role="button" data-slide="next">
+                                  <a class="carousel-control-next" href="#electricFleetCarousel" role="button" data-slide="next" onclick="$('#electricFleetCarousel').carousel('pause')">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
                                 </div>
                                 <!--~~~~~~~~~~~~~Scenario 7~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div id="electricCommuteCarousel" class="carousel slide scenario-7 collapse" data-parent="#scenarioColumn" data-interval="false">
+                                <div id="electricCommuteCarousel" class="carousel slide scenario-7 collapse" data-ride='carousel' data-parent="#scenarioColumn" data-interval="4000">
                                   <ol class="carousel-indicators">
-                                    <li data-target="#electricCommuteCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#electricCommuteCarousel" data-slide-to="1"></li>
-                                    <li data-target="#electricCommuteCarousel" data-slide-to="2"></li>
-                                    <li data-target="#electricCommuteCarousel" data-slide-to="3"></li>
-                                    <li data-target="#electricCommuteCarousel" data-slide-to="4"></li>
-                                    <li data-target="#electricCommuteCarousel" data-slide-to="5"></li>
+                                    <li data-target="#electricCommuteCarousel" data-slide-to="0" class="active" onclick="$('#electricCommuteCarousel').carousel('pause')"></li>
+                                    <li data-target="#electricCommuteCarousel" data-slide-to="1" onclick="$('#electricCommuteCarousel').carousel('pause')"></li>
+                                    <li data-target="#electricCommuteCarousel" data-slide-to="2" onclick="$('#electricCommuteCarousel').carousel('pause')"></li>
+                                    <li data-target="#electricCommuteCarousel" data-slide-to="3" onclick="$('#electricCommuteCarousel').carousel('pause')"></li>
+                                    <li data-target="#electricCommuteCarousel" data-slide-to="4" onclick="$('#electricCommuteCarousel').carousel('pause')"></li>
+                                    <li data-target="#electricCommuteCarousel" data-slide-to="5" onclick="$('#electricCommuteCarousel').carousel('pause')"></li>
                                   </ol>
                                   <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -408,22 +416,22 @@
                                       <img class="d-block w-100" src="./pictures/electricCommuteCarouselSlide6.png" alt="Sixth slide">
                                     </div>
                                   </div>
-                                  <a class="carousel-control-prev" href="#electricCommuteCarousel" role="button" data-slide="prev">
+                                  <a class="carousel-control-prev" href="#electricCommuteCarousel" role="button" data-slide="prev" onclick="$('#electricCommuteCarousel').carousel('pause')">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                   </a>
-                                  <a class="carousel-control-next" href="#electricCommuteCarousel" role="button" data-slide="next">
+                                  <a class="carousel-control-next" href="#electricCommuteCarousel" role="button" data-slide="next" onclick="$('#electricCommuteCarousel').carousel('pause')">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
                                 </div>
                                 <!--~~~~~~~~~~~~~Scenario 8~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div id="offsetsCarousel" class="carousel slide scenario-8 collapse" data-parent="#scenarioColumn" data-interval="false">
+                                <div id="offsetsCarousel" class="carousel slide scenario-8 collapse" data-ride='carousel' data-parent="#scenarioColumn" data-interval="4000">
                                   <ol class="carousel-indicators">
-                                    <li data-target="#offsetsCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#offsetsCarousel" data-slide-to="1"></li>
-                                    <li data-target="#offsetsCarousel" data-slide-to="2"></li>
-                                    <li data-target="#offsetsCarousel" data-slide-to="3"></li>
+                                    <li data-target="#offsetsCarousel" data-slide-to="0" class="active" onclick="$('#offsetsCarousel').carousel('pause')"></li>
+                                    <li data-target="#offsetsCarousel" data-slide-to="1" onclick="$('#offsetsCarousel').carousel('pause')"></li>
+                                    <li data-target="#offsetsCarousel" data-slide-to="2" onclick="$('#offsetsCarousel').carousel('pause')"></li>
+                                    <li data-target="#offsetsCarousel" data-slide-to="3" onclick="$('#offsetsCarousel').carousel('pause')"></li>
                                   </ol>
                                   <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -439,11 +447,11 @@
                                       <img class="d-block w-100" src="./pictures/offsetsCarouselSlide4.png" alt="Fourth slide">
                                     </div>
                                   </div> 
-                                  <a class="carousel-control-prev" href="#offsetsCarousel" role="button" data-slide="prev">
+                                  <a class="carousel-control-prev" href="#offsetsCarousel" role="button" data-slide="prev" onclick="$('#offsetsCarousel').carousel('pause')">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                   </a>
-                                  <a class="carousel-control-next" href="#offsetsCarousel" role="button" data-slide="next">
+                                  <a class="carousel-control-next" href="#offsetsCarousel" role="button" data-slide="next" onclick="$('#offsetsCarousel').carousel('pause')">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
@@ -452,8 +460,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div id="scenarioContentColumn" class="col-lg-7">
-                            <div class="row">
+                        <div id="scenarioContentColumn" class="col-lg-6">
+                            <div class="row mx-auto">
                                 <!--~~~~~~~~Scenario Dependent~~~~~~~~~~~~~~~--> 
                                 <div class="projectsOverview collapse show" data-parent="#scenarioColumn">
                                 </div>
@@ -476,13 +484,13 @@
                                     <a id="natureConservancyPlot" style="width:280px;height:200px;"></a>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mx-auto">
                             <!--~~~~~USER INPUTS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                                 <!--~~~~~~~~~Projects Overview~~~~~~~~~~~~~~~~~~~~~~-->
                                 <div class="projectsOverview collapse show" data-parent="#scenarioColumn">
                                 </div>
                                 <!--~~~~~~~~~Scenario 1~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div class="scenario-1 collapse" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
+                                <div class="scenario-1 collapse mx-auto text-center" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
                                     <form>
                                         <u for="laborCostSlider">Staff Wage for Changing Lights</u>
                                         <br/>
@@ -515,7 +523,7 @@
                                     </form>
                                 </div>
                                 <!--~~~~~~~~~Scenario 2~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div class="scenario-2 collapse" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
+                                <div class="scenario-2 collapse mx-auto text-center" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
                                     <form>
                                         <select name="solarOption" id="solarOption">
                                             <option value="Google Sunroof" id="googleSunroof">Google Sunroof</option>
@@ -532,7 +540,7 @@
                                     </form>
                                 </div>
                                 <!--~~~~~~~~~Scenario 3~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div class="scenario-3 collapse p-1" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
+                                <div class="scenario-3 collapse p-1 mx-auto text-center" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
                                     <form>
                                         <u for="commissioningSlider">Frequency of Commissioning</u>
                                         <br/>
@@ -563,12 +571,12 @@
                                     </form>
                                 </div>
                                 <!--~~~~~~~~~Scenario 4~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div class="scenario-4 collapse p-1" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
+                                <div class="scenario-4 collapse p-1 mx-auto text-center" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
                                     <form>
                                         <u for=“plantAutomation”>Plant EUI Reduction</u>
                                         <br/>
-                                        <input type="range" name="plantAutomationSlider" id="plantAutomationSlider" value="30" min="0" max="100" step="1" onchange="updateSliderInput(this.value);">
-                                        <b><span id="sliderInput" type="number" style="font-size: 150%" disabled="true">30</span></b>
+                                        <input type="range" name="plantAutomationSliderEUI" id="plantAutomationSliderEUI" value="30" min="0" max="100" step="1" onchange="updateSliderInput(this.value);">
+                                        <b><span id="plantAutomationEUISliderInput" type="number" style="font-size: 150%" disabled="true">30</span></b>
                                         <span for="sliderInput">%</span>
                                         <br/>
                                         <br/>
@@ -587,7 +595,7 @@
                                     </form>
                                 </div>
                                 <!--~~~~~~~~~Scenario 5~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div class="scenario-5 collapse" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
+                                <div class="scenario-5 collapse mx-auto text-center" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
                                     <form>
                                         <u for=“smartLabsSlider”>Lab HVAC EUI Reduction</u>
                                         <br/>
@@ -617,7 +625,7 @@
                                     </form>
                                 </div>
                                 <!--~~~~~~~~~Scenario 7~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div class="scenario-7 collapse" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
+                                <div class="scenario-7 collapse mx-auto text-center" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
                                     <form>
                                         <u for="electricCommuteChargeRate">Campus Charge Rate</u>
                                         <br/>
@@ -640,7 +648,7 @@
                                     </form>
                                 </div>
                                 <!--~~~~~~~~~Scenario 8~~~~~~~~~~~~~~~~~~~~~~-->
-                                <div class="scenario-8 collapse" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
+                                <div class="scenario-8 collapse mx-auto text-center" data-parent="#scenarioColumn" style="margin:5% 2% 0% 5%">
                                     <form>
                                         <u for="costOfOffsets">Offset Cost</u>
                                         <br/>
@@ -652,8 +660,8 @@
                                 
                             </div>
                         </div>
-                        <div class="col-lg-5">
-                            <div class="row" style="background-color:#6c757d;border-radius:5px 0 0 5px;margin-left:0%">
+                        <div class="col-lg-6">
+                            <div class="row mx-auto" style="background-color:#6c757d;border-radius:5px;">
                                 <h4 id="takeawayHeader" class="collapse" data-toggle="false" style="text-align: center;padding-left:5%">Takeaways</h4>
                                 <!--~~~~~~~~~~~~~~~~~~Scenario Dependent~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                                 <ul class="scenario-1 collapse" data-parent="#scenarioColumn" style="padding-left:10%">
@@ -693,23 +701,29 @@
                   </div>
                   <div id="financesColumn" class="col-lg-3">
                     <h2 class="text-center column-header">Project Cost Evaluation</h2>
+                    <div class="row"> 
+                        <a id="financesFillerRow1" style="margin:2% 0% 3% 0%"></a>
+                    </div>
                     <div class="row">
                         <div id='MACPlot' style="width:300px;height:300px"></div>
                     </div>
-                    <div class="row"> 
-                        <a id="financesFillerRow" style="margin:5% 0"></a>
+                    <div class="row">
+                        <div id='SavingsVCostPlot' style="width:300px;height:300px;margin-top:2%"></div>
                     </div>
                     <div class="row">
-                        <div id='SavingsVCostPlot' style="width:300px;height:300px"></div>
-                    </div>  
+                        <a id="financesFillerRow2" style="margin:5% 0% 2% 0%"></a>  
+                    </div> 
+                    <div class="row" style="margin-top:20">
+                        <div id='netCostPlot' style="width:300px;height:300px"></div>
+                    </div>
                   </div>
                 </div>  
         </font>
       </div>
     </div>    
-      <div class="collapse tabs-1 show" id="tabs-1Content" data-parent="#tabs">
+      <div class="collapse tabs-1 show w-100" id="tabs-1Content" data-parent="#tabs">
           <font color='white'>
-            <div class="container-fluid">
+              <div class="container-fluid">
                 <div class="row">
                     <form class="growthType">
                         <label for="radio">Growth Options:</label>
@@ -733,23 +747,32 @@
                         </select>
                     </form>
                 </div>
+                <div class="row m-auto mt-0 mb-3" style="">
+                    <div class="col-lg-12 text-right">
+                        <p class="" style="">*Square footage data includes GT main campus and main GTRI.</p>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-lg-8 text-center">
-                        <a id='campusSqftPlot' style="width:780px;height:300px"></a>
+                    <div class="col-lg-3">
+                        <div class="row">
+                            <p class="mt-0 mx-auto" style=""><b>Georgia Tech: 1908 to 2018</b></p>
+                        </div>
+                        <img class="w-100 mt-auto img-responsive" src="./pictures/campusGrowth.gif" style="border-radius:1%;">
                     </div>
-                    <div class="col-lg-2 my-auto text-center">
-                        <a id='campusSqft2014PiePlot' style="width:230px;height:230px;"></a>
+                    <div id="1908PieCol" class="col-lg-2 m-auto">
+                        <!--<a id='campusSqftPlot' style="width:780px;height:300px"></a>-->
+                        <a id='campusSqft1908PiePlot' style="width:300px;height:300px;"></a>
                     </div>
-                    <div class="col-lg-2 text-center">
+                    <div id="2018PieCol" class="col-lg-3 m-auto">
+                        <a id='campusSqft2018PiePlot' style="width:300px;height:300px;"></a>
+                    </div>
+                    <div id="2050PieCol" class="col-lg-4 m-auto">
                         <a id='campusSqft2050PiePlot' style="width:300px;height:300px;"></a>
                     </div>
                 </div>
-                <div class="row">
-                    <p style="">*Square footage data includes GT main campus and main GTRI.</p>
-                </div>
                 <div class="row text-center">
-                    <div class="col-lg-4 text-center">
-                        <a id='studentGrowthPlot' style="width:300px;height:240px;"></a>
+                    <div id="studentGrowthPlotColumn" class="col-lg-4 text-center">
+                        <a id='studentGrowthPlot' class="text-center" style="width:300px;height:240px;"></a>
                     </div>
                     <div class="col-lg-4 text-center">
                         <a id='facultyGrowthPlot' style="width:300px;height:240px;"></a>
@@ -758,8 +781,6 @@
                         <a id='researchGrowthPlot' style="width:300px;height:240px;"></a>
                     </div>
                 </div>
-            <!--<p style="position:relative;top:-1000px;left:5%">Georgia Tech: 1908 to 2018</p>
-            <img src="./pictures/campusGrowth.gif" style="width:50%;height:70%;position:relative;top:-1000px;left:5%">-->
             </div>
           </font>
         </div>
@@ -815,6 +836,7 @@
     <script type="text/javascript" src="./divide.js"></script>
     <script type="text/javascript" src="./sumArray.js"></script>
     <script type="text/javascript" src="./elementWiseAdd.js"></script>
+    <script type="text/javascript" src="./parseValues.js"></script>
     <!--<script src="echarts.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
@@ -1253,7 +1275,110 @@
             ]
         };
         scopesWedgePlot.setOption(scopesWedgePlotOption);
-          
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//Normalized Emissions Chart
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        let normalizedEmissionsPlot = echarts.init(document.getElementById('normalizedEmissionsPlot'));
+        
+        let normalizedEmissionsPlotOption = {
+            title: {
+                text: 'Normalized Emissions',
+                left: 'center',
+                textStyle: {
+                    color: 'white',
+                    fontFamily: 'sans-serif'
+                },
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                },
+                //position: 'bottom'
+                //formatter: "Template formatter: <br/>{b}<br/>{a}:{c}<br/>{a1}:{c1}"
+            },
+            toolbox: {
+                /*feature: {
+                    saveAsImage: {}
+                }*/
+            },
+            grid: {
+                top: '12%',
+                left: '10%',
+                right: '15%',
+                bottom: '8%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : buildingSpace.year,
+                    name: 'Year',
+                    nameLocation: 'middle',
+                    nameGap: 24,
+                    nameTextStyle: {
+                        color: 'white',
+                        fontFamily: 'sans-serif'
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: 'darkgray'
+                        }
+                    },
+                    axisTick: {
+                        lineStyle: {
+                            color: 'darkgray'
+                        }
+                    },
+                    axisLabel: {
+                        color: 'white',
+                        fontFamily: 'sans-serif'
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    name: 'Emissions Per 1000sqft (tons/1000sqft)',
+                    nameLocation: 'middle',
+                    nameGap: 40,
+                    nameTextStyle: {
+                        color: 'white',
+                        fontFamily: 'sans-serif'
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: 'darkgray'
+                        }
+                    },
+                    axisTick: {
+                        lineStyle: {
+                            color: 'darkgray'
+                        }
+                    },
+                    axisLabel: {
+                        color: 'white',
+                        fontFamily: 'sans-serif'
+                    }
+                }
+            ],
+            series : [
+                {
+                    name: 'NormalizedEmissions',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: divide(multiply(emissions.totalEmissions,[1000]),divide(buildingSpace.totalSqft,[1000]))
+                },
+            ]
+        };
+        normalizedEmissionsPlot.setOption(normalizedEmissionsPlotOption);
+                  
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //MAC Chart
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1616,9 +1741,112 @@
 	SavingsVCostPlot.setOption(SavingsVCostPlotOption);
 		  
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//NetCost Chart
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        let netCostPlot = echarts.init(document.getElementById('netCostPlot'));
+        
+        let netCostPlotOption = {
+            title: {
+                text: 'Net Cost',
+                left: 'center',
+                textStyle: {
+                    color: 'white',
+                    fontFamily: 'sans-serif'
+                },
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                },
+                //position: 'bottom'
+                //formatter: "Template formatter: <br/>{b}<br/>{a}:{c}<br/>{a1}:{c1}"
+            },
+            toolbox: {
+                /*feature: {
+                    saveAsImage: {}
+                }*/
+            },
+            grid: {
+                left: '8%',
+                right: '4%',
+                top: '12%',
+                bottom: '8%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : buildingSpace.year,
+                    name: 'Year',
+                    nameLocation: 'middle',
+                    nameGap: 24,
+                    nameTextStyle: {
+                        color: 'white',
+                        fontFamily: 'sans-serif'
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: 'darkgray'
+                        }
+                    },
+                    axisTick: {
+                        lineStyle: {
+                            color: 'darkgray'
+                        }
+                    },
+                    axisLabel: {
+                        color: 'white',
+                        fontFamily: 'sans-serif'
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    name: 'Net Cost ($MM)',
+                    nameLocation: 'middle',
+                    nameGap: 40,
+                    nameTextStyle: {
+                        color: 'white',
+                        fontFamily: 'sans-serif'
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: 'darkgray'
+                        }
+                    },
+                    axisTick: {
+                        lineStyle: {
+                            color: 'darkgray'
+                        }
+                    },
+                    axisLabel: {
+                        color: 'white',
+                        fontFamily: 'sans-serif'
+                    }
+                }
+            ],
+            series : [
+                {
+                    name: 'Net',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [elementWiseAdd(elementWiseAdd(elementWiseAdd(elementWiseAdd(elementWiseAdd(elementWiseAdd(elementWiseAdd(scenarios.led.getNetCost()[0],scenarios.natureConservancy.getNetCost()[0]),scenarios.plantAutomation.getNetCost()[0]),scenarios.solarRoof.getNetCost()[0]),scenarios.commissioning.getNetCost()[0]),scenarios.electricFleet.getNetCost()[0]),scenarios.electricCommute.getNetCost()[0]),scenarios.smartLabs.getNetCost()[0])],
+                },
+            ]
+        };
+        netCostPlot.setOption(netCostPlotOption);
+          
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //Sqft Chart
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        const campusSqftChart = echarts.init(document.getElementById('campusSqftPlot'));
+        /*const campusSqftChart = echarts.init(document.getElementById('campusSqftPlot'));
         const option = {
             title: {
                 text: 'Campus Square Footage',
@@ -1662,9 +1890,9 @@
                 },
             },
             toolbox: {
-                /*feature: {
+                feature: {
                     saveAsImage: {}
-                }*/
+                }
             },
             grid: {
                 left: '3%',
@@ -1703,9 +1931,9 @@
             yAxis : [
                 {
                     type : 'value',
-                    /*axisLabel: {
+                    axisLabel: {
                         formatter: '{value} Sqft'
-                    },*/
+                    },
                     name: 'Sqft',
                     nameLocation: 'middle',
                     nameGap: 70,
@@ -1775,15 +2003,88 @@
             ]
         };
 
-        campusSqftChart.setOption(option);
+        campusSqftChart.setOption(option);*/
           
-        
-          
-        
-        const campusSqft2014PieChart = echarts.init(document.getElementById('campusSqft2014PiePlot'));
-        const campusSqft2014PieOption = {
+        let campusSqft1908PieChart = echarts.init(document.getElementById('campusSqft1908PiePlot'));
+        let campusSqft1908PieOption = {
             title: {
-                text: '2014',
+                text: '1908 - 201,000 sqft',
+                left: 'center',
+                textStyle: {
+                    color: 'white',
+                    fontFamily: 'sans-serif'
+                },
+            },
+            series : [
+                {
+                    name:'1908',
+                    type:'pie',
+                    radius: '1.2%',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data:[
+                        {
+                            name:'Resid',
+                            itemStyle: {
+                                color: 'rgba(128, 0, 0,.8)'
+                            },
+                            value:58110 //swann, knowles
+                        },
+                        {
+                            name:'Class',
+                            itemStyle: {
+                                color: 'rgba(0, 128, 128,.8)'
+                            },
+                            value:69293 //savant, carnegie (library) ,academic (now evans, whitehead, pate)
+                        },
+                        /*{
+                            name:'Plant',
+                            itemStyle: {
+                                color: 'rgba(64, 0, 128,.8)'
+                            },
+                            value:buildingSpace.plantLayer.sqft[0]
+                        },*/
+                        {
+                            name:'Lab',
+                            itemStyle: {
+                                color: 'rgba(64, 0, 128,.8)'
+                            },
+                            value:73626 //lyman (chemistry), french (textiles), old shop (bio building)
+                        },
+                        {
+                            name:'Other',
+                            itemStyle: {
+                                color: 'rgba(128, 128, 128,.8)'
+                            },
+                            value:0
+                        }
+                        /*{
+                            name:'Health',
+                            itemStyle: {
+                                color: 'rgba(64, 0, 128,.8)'
+                            },
+                            value:buildingSpace.healthLayer.sqft[0]
+                        }*/
+                    ],
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: 'rgba(255, 255, 255, 0.9)'
+                            },
+                            formatter: '{b}: {d}%',
+                            position: 'outside'
+                        },
+                    }
+                },
+            ]
+        };
+        campusSqft1908PieChart.setOption(campusSqft1908PieOption);
+          
+        
+        let campusSqft2018PieChart = echarts.init(document.getElementById('campusSqft2018PiePlot'));
+        let campusSqft2018PieOption = {
+            title: {
+                text: '2018 - 13.4 MMsqft',
                 left: 'center',
                 textStyle: {
                     color: 'white',
@@ -1798,8 +2099,9 @@
             },
             series : [
                 {
-                    name:'2014',
+                    name:'2018',
                     type:'pie',
+                    radius: '54%',
                     stack: '总量',
                     areaStyle: {normal: {}},
                     data:[
@@ -1808,14 +2110,14 @@
                             itemStyle: {
                                 color: 'rgba(128, 0, 0,.8)'
                             },
-                            value:buildingSpace.residLayer.sqft[0]
+                            value:buildingSpace.residLayer.sqft[10]
                         },
                         {
                             name:'Class',
                             itemStyle: {
                                 color: 'rgba(0, 128, 128,.8)'
                             },
-                            value:buildingSpace.classLayer.sqft[0]
+                            value:buildingSpace.classLayer.sqft[10]
                         },
                         /*{
                             name:'Plant',
@@ -1829,14 +2131,14 @@
                             itemStyle: {
                                 color: 'rgba(64, 0, 128,.8)'
                             },
-                            value:buildingSpace.labLayer.sqft[0]
+                            value:buildingSpace.labLayer.sqft[10]
                         },
                         {
                             name:'Other',
                             itemStyle: {
                                 color: 'rgba(128, 128, 128,.8)'
                             },
-                            value:elementWiseAdd(elementWiseAdd(buildingSpace.healthLayer.sqft,buildingSpace.plantLayer.sqft),buildingSpace.other.sqft)[0]
+                            value:elementWiseAdd(elementWiseAdd(buildingSpace.healthLayer.sqft,buildingSpace.plantLayer.sqft),buildingSpace.other.sqft)[10]
                         }
                         /*{
                             name:'Health',
@@ -1853,12 +2155,12 @@
                 },
             ]
         };
-        campusSqft2014PieChart.setOption(campusSqft2014PieOption);
+        campusSqft2018PieChart.setOption(campusSqft2018PieOption);
           
-        const campusSqft2050PieChart = echarts.init(document.getElementById('campusSqft2050PiePlot'));
-        const campusSqft2050PieOption = {
+        let campusSqft2050PieChart = echarts.init(document.getElementById('campusSqft2050PiePlot'));
+        let campusSqft2050PieOption = {
             title: {
-                text: '2050',
+                text: '2050 - 28 MMsqft',
                 left: 'center',
                 textStyle: {
                     color: 'white',
@@ -1875,6 +2177,7 @@
                 {
                     name:'2050',
                     type:'pie',
+                    radius: '58%',
                     stack: '总量',
                     areaStyle: {normal: {}},
                     data:[
@@ -1929,11 +2232,11 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         const symbolSize = 10;
         
-        const studentGrowthChart = echarts.init(document.getElementById('studentGrowthPlot'));
+        let studentGrowthChart = echarts.init(document.getElementById('studentGrowthPlot'));
         const xMin = 2008;
         const xMax = 2050;
         const yMin = 0;
-        const yMax = 80000;
+        const yMax = 160000;
 
         let studentGrowthOption = {
             title: {
@@ -2114,9 +2417,9 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //Faculty Growth Chart
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        const facultyGrowthChart = echarts.init(document.getElementById('facultyGrowthPlot'));
+        let facultyGrowthChart = echarts.init(document.getElementById('facultyGrowthPlot'));
         const yMinFaculty = 0;
-        const yMaxFaculty = 30000;
+        const yMaxFaculty = 60000;
 
         let facultyGrowthOption = {
             title: {
@@ -2291,9 +2594,9 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //Research Growth Chart
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~        
-        const researchGrowthChart = echarts.init(document.getElementById('researchGrowthPlot'));
+        let researchGrowthChart = echarts.init(document.getElementById('researchGrowthPlot'));
         const yMinResearch = 0;
-        const yMaxResearch = 3000;
+        const yMaxResearch = 6000;
 
         let researchGrowthOption = {
             title: {
@@ -3676,15 +3979,29 @@
         $(window).on('resize',function(){
             resizeCharts();
         })
-        
+        $(window).on('load',function(){
+            resizeCharts();
+        })
         function resizeCharts(){
             //resize filler row
-            $("#financesFillerRow").height($("#emissionsButtonsRow").height());
+            $("#financesFillerRow1").height($("#emissionsButtonsRow").height());
+            $("#financesFillerRow2").height($("#emissionsNormalizationButtons").height());
+            //refresh options
+            normalizedEmissionsPlotOption = normalizedEmissionsPlot.getOption();
+           /* MACPlotOption = MACPlot.getOption();*/
             //dispose of existing charts to make room for the new ones
+            campusSqft1908PieChart.dispose();
+            campusSqft2018PieChart.dispose();
+            campusSqft2050PieChart.dispose();
+            studentGrowthChart.dispose();
+            facultyGrowthChart.dispose();
+            researchGrowthChart.dispose();
             wedgePlot.dispose();
             scopesWedgePlot.dispose();
+            normalizedEmissionsPlot.dispose();
             MACPlot.dispose();
             SavingsVCostPlot.dispose();
+            netCostPlot.dispose();
             ledChart.dispose();
             solarRoofChart.dispose();
             smartLabsChart.dispose();
@@ -3692,13 +4009,26 @@
             electricCommuteChart.dispose();
             natureConservancyChart.dispose();
             //get correct chart width and set plot areas to this
+            let pieColumnWidth = $("#1908PieCol").width();
+            let growthPlotColumnWidth = $("#studentGrowthPlotColumn").width();
             let scenarioColumnWidth = $("#scenarioContentColumn").width();
             let emissionsColumnWidth = $("#emissionsColumn").width();
             let financesColumnWidth = $("#financesColumn").width();
+            $('#campusSqft1908PiePlot').width(pieColumnWidth);
+            $('#campusSqft1908PiePlot').height(pieColumnWidth*2);
+            $('#campusSqft2018PiePlot').width(pieColumnWidth*3/2);
+            $('#campusSqft2018PiePlot').height(pieColumnWidth*2);
+            $('#campusSqft2050PiePlot').width(pieColumnWidth*2);
+            $('#campusSqft2050PiePlot').height(pieColumnWidth*2);
+            $('#studentGrowthPlot').width(growthPlotColumnWidth);
+            $('#facultyGrowthPlot').width(growthPlotColumnWidth);
+            $('#researchGrowthPlot').width(growthPlotColumnWidth);
             $('#wedgePlot').width(emissionsColumnWidth);
             $('#scopesWedgePlot').width(emissionsColumnWidth);
+            $('#normalizedEmissionsPlot').width(emissionsColumnWidth);
             $('#MACPlot').width(financesColumnWidth);
             $('#SavingsVCostPlot').width(financesColumnWidth);
+            $('#netCostPlot').width(financesColumnWidth);
             $('#ledPlot').width(scenarioColumnWidth);
             $('#solarRoofPlot').width(scenarioColumnWidth);
             $('#smartLabsPlot').width(scenarioColumnWidth);
@@ -3718,14 +4048,33 @@
             $('#MACPlot').height(chartHeight);
             $('#SavingsVCostPlot').height(chartHeight);*/
             //recreate charts and link to plot areas
+            campusSqft1908PieChart = echarts.init(document.getElementById('campusSqft1908PiePlot'));
+            campusSqft1908PieChart.setOption(campusSqft1908PieOption);
+            campusSqft2018PieChart = echarts.init(document.getElementById('campusSqft2018PiePlot'));
+            campusSqft2018PieChart.setOption(campusSqft2018PieOption);
+            campusSqft2050PieChart = echarts.init(document.getElementById('campusSqft2050PiePlot'));
+            campusSqft2050PieChart.setOption(campusSqft2050PieOption);
+            studentGrowthChart = echarts.init(document.getElementById('studentGrowthPlot'));
+            studentGrowthChart.setOption(studentGrowthOption);
+            facultyGrowthChart = echarts.init(document.getElementById('facultyGrowthPlot'));
+            facultyGrowthChart.setOption(facultyGrowthOption);
+            researchGrowthChart = echarts.init(document.getElementById('researchGrowthPlot'));
+            researchGrowthChart.setOption(researchGrowthOption);
+            wedgePlot = echarts.init(document.getElementById('wedgePlot'));
+            wedgePlot.setOption(wedgePlotOption);
             wedgePlot = echarts.init(document.getElementById('wedgePlot'));
             wedgePlot.setOption(wedgePlotOption);
             scopesWedgePlot = echarts.init(document.getElementById('scopesWedgePlot'));
             scopesWedgePlot.setOption(scopesWedgePlotOption);
+            normalizedEmissionsPlot = echarts.init(document.getElementById('normalizedEmissionsPlot')); 
+            normalizedEmissionsPlot.setOption(normalizedEmissionsPlotOption);
             MACPlot = echarts.init(document.getElementById('MACPlot'));
+            /*MACPlot.setOption(updateMACPlot(scenarios,MACPlotOption,$("#calculationPeriodSlider").val()));*/
             MACPlot.setOption(MACPlotOption);
             SavingsVCostPlot = echarts.init(document.getElementById('SavingsVCostPlot'));
             SavingsVCostPlot.setOption(SavingsVCostPlotOption);
+            netCostPlot = echarts.init(document.getElementById('netCostPlot'));
+            netCostPlot.setOption(netCostPlotOption);
             ledChart = echarts.init(document.getElementById('ledPlot'));
             ledChart.setOption(ledOption);
             solarRoofChart = echarts.init(document.getElementById('solarRoofPlot'));
@@ -3829,6 +4178,7 @@
             $("#tab1").addClass('activeTab');
             $("#tab2").addClass('inactiveTab');
             $("#tab3").addClass('inactiveTab');
+            setTimeout(function(){resizeCharts()},500)
         })
          $("#tab2").click(function(){
             $("#tab1").removeClass('activeTab');
@@ -3858,9 +4208,7 @@
             $("#electricCommuteButton").click(() => {selectProject($("#electricCommuteButton"));$("#takeawayHeader").collapse('show')});
             $("#offsetsButton").click(() => {selectProject($("#offsetsButton"));$("#takeawayHeader").collapse('show')});
         })
-        function selectProject(selectedProjectButton){
-            console.log(selectedProjectButton)
-            
+        function selectProject(selectedProjectButton){            
             $("#overviewButton").removeClass('activeProject');
             $("#ledButton").removeClass('activeProject');
             $("#solarRoofButton").removeClass('activeProject');
@@ -4325,78 +4673,90 @@
             rescale();
         })
         
-        $(function(){
-            $("#emissionsWedgePlot").click(function(){
-                $("#emissionsWedgePlot").css("backgroundColor","rgb(180,180,180)")
-                $("#energyWedgePlot").css("backgroundColor","rgb(225,225,225)")
-                emissionsEnergy = 'emissions';
-                wedgePlotOption = wedgePlot.getOption();
-                wedgePlotOption.title[0].text = 'Emissions by Project';
-                wedgePlotOption.yAxis = [
-                    {
-                        type : 'value',
-                        name: 'Emissions (Metric kTons CO2e)',
-                        nameLocation: 'middle',
-                        nameGap: 40,
-                        min: 0,
-                        max:800
-                    }
-                ],
-                wedgePlot.setOption(wedgePlotOption);
-                
-                scopesWedgePlotOption = scopesWedgePlot.getOption();
-                scopesWedgePlotOption.title[0].text = 'Emissions by Scope';
-                scopesWedgePlotOption.yAxis = [
-                    {
-                        type : 'value',
-                        name: 'Emissions (Metric kTons CO2e)',
-                        nameLocation: 'middle',
-                        nameGap: 40,
-                        min: 0,
-                        max:800
-                    }
-                ],
-                scopesWedgePlot.setOption(scopesWedgePlotOption)
-                refreshScenarios();
-                rescale();
-            })
+        $("#emissionsWedgePlot").click(function(){
+            $("#emissionsWedgePlot").css("backgroundColor","rgb(180,180,180)")
+            $("#energyWedgePlot").css("backgroundColor","rgb(225,225,225)")
+            emissionsEnergy = 'emissions';
+            wedgePlotOption = wedgePlot.getOption();
+            wedgePlotOption.title[0].text = 'Emissions by Project';
+            wedgePlotOption.yAxis = [
+                {
+                    type : 'value',
+                    name: 'Emissions (Metric kTons CO2e)',
+                    nameLocation: 'middle',
+                    nameGap: 40,
+                    min: 0,
+                    max:800
+                }
+            ],
+            wedgePlot.setOption(wedgePlotOption);
+
+            scopesWedgePlotOption = scopesWedgePlot.getOption();
+            scopesWedgePlotOption.title[0].text = 'Emissions by Scope';
+            scopesWedgePlotOption.yAxis = [
+                {
+                    type : 'value',
+                    name: 'Emissions (Metric kTons CO2e)',
+                    nameLocation: 'middle',
+                    nameGap: 40,
+                    min: 0,
+                    max:800
+                }
+            ],
+            scopesWedgePlot.setOption(scopesWedgePlotOption)
+            
+            refreshScenarios();
+            rescale();
         })
-        $(function(){
-            $("#energyWedgePlot").click(function(){
-                $("#energyWedgePlot").css("backgroundColor","rgb(180,180,180)")
-                $("#emissionsWedgePlot").css("backgroundColor","rgb(225,225,225)")
-                emissionsEnergy = 'energy';
-                wedgePlotOption = wedgePlot.getOption();
-                wedgePlotOption.title[0].text = 'Energy by Project';
-                wedgePlotOption.yAxis = [
-                    {
-                        type : 'value',
-                        name: 'Energy Consumption (GWh)',
-                        nameLocation: 'middle',
-                        nameGap: 40,
-                        min: 0,
-                        max:1500
-                    }
-                ],
-                wedgePlot.setOption(wedgePlotOption);
-                
-                
-                scopesWedgePlotOption = scopesWedgePlot.getOption();
-                scopesWedgePlotOption.title[0].text = 'Energy by Scope';
-                scopesWedgePlotOption.yAxis = [
-                    {
-                        type : 'value',
-                        name: 'Energy Consumption (GWh)',
-                        nameLocation: 'middle',
-                        nameGap: 40,
-                        min: 0,
-                        max:1500
-                    }
-                ],
-                scopesWedgePlot.setOption(scopesWedgePlotOption);
-                refreshScenarios();
-                rescale();
-            })
+        $("#energyWedgePlot").click(function(){
+            $("#energyWedgePlot").css("backgroundColor","rgb(180,180,180)")
+            $("#emissionsWedgePlot").css("backgroundColor","rgb(225,225,225)")
+            emissionsEnergy = 'energy';
+            wedgePlotOption = wedgePlot.getOption();
+            wedgePlotOption.title[0].text = 'Energy by Project';
+            wedgePlotOption.yAxis = [
+                {
+                    type : 'value',
+                    name: 'Energy Consumption (GWh)',
+                    nameLocation: 'middle',
+                    nameGap: 40,
+                    min: 0,
+                    max:1500
+                }
+            ],
+            wedgePlot.setOption(wedgePlotOption);
+
+
+            scopesWedgePlotOption = scopesWedgePlot.getOption();
+            scopesWedgePlotOption.title[0].text = 'Energy by Scope';
+            scopesWedgePlotOption.yAxis = [
+                {
+                    type : 'value',
+                    name: 'Energy Consumption (GWh)',
+                    nameLocation: 'middle',
+                    nameGap: 40,
+                    min: 0,
+                    max:1500
+                }
+            ],
+            scopesWedgePlot.setOption(scopesWedgePlotOption);
+
+            refreshScenarios();
+            rescale();
+        })
+        $("#normalizeBySqft").click(function(){
+            $("#normalizeByStudent").removeClass('activeToggleBtn');
+            $("#normalizeBySqft").removeClass('inactiveToggleBtn');
+            $("#normalizeByStudent").addClass('inactiveToggleBtn');
+            $("#normalizeBySqft").addClass('activeToggleBtn');
+            refreshScenarios();
+        })
+        $("#normalizeByStudent").click(function(){
+            $("#normalizeBySqft").removeClass('activeToggleBtn');
+            $("#normalizeByStudent").removeClass('inactiveToggleBtn');
+            $("#normalizeBySqft").addClass('inactiveToggleBtn');
+            $("#normalizeByStudent").addClass('activeToggleBtn');
+            refreshScenarios();
         })
         $(function(){
             $("#solarOption").change(function(){
@@ -4407,11 +4767,13 @@
         $(function(){
             $("#degradationFactor").change(function(){
                 BAUGrowth.degradation.degradationFactor = $("#degradationFactor").val();
+                $("#degradationFactorInput").text($("#degradationFactor").val());
                 refreshBAU();
                 refreshScenarios();
             })
             $("#maxDegradation").change(function(){
                 BAUGrowth.degradation.maxDegradation = $("#maxDegradation").val();
+                $("#maxDegradationInput").text($("#maxDegradation").val());
                 refreshBAU();
                 refreshScenarios();
             })
@@ -4428,9 +4790,9 @@
                 $("#commissioningSliderInput").text(scenarios.commissioning.frequency);
             }
         $(function(){
-            $("#plantAutomationSlider").change(function(){
-                scenarios.plantAutomation.plantEUIReduction=$("#plantAutomationSlider").val();  
-                $("#plantAutomationSliderInput").text($("#plantAutomationSlider").val());
+            $("#plantAutomationSliderEUI").change(function(){
+                scenarios.plantAutomation.plantEUIReduction=$("#plantAutomationSliderEUI").val();  
+                $("#plantAutomationEUISliderInput").text($("#plantAutomationSliderEUI").val());
                 refreshScenarios();
             })
         })
@@ -4451,7 +4813,7 @@
 		$(function(){
 			$("#costOfOffsets").change(function(){
 				scenarios.natureConservancy.costPerKTonCO2 = $("#costOfOffsets").val()*1000;
-                $("#costOfOffsetsInput").text($("#costOfOffsets").val());
+                $("#costOfOffsetsDisplay").text($("#costOfOffsets").val());
 				refreshScenarios();
 			})
 		})
@@ -4652,39 +5014,44 @@
             buildingSpace = calculateSqft(buildingSpace,BAUGrowth);
             emissions = calculateBaselineEmissions(buildingSpace,emissions,scenarios);
 			[buildingSpace, emissions] = calculateEmissions(buildingSpace,emissions,scenarios);
-            campusSqftChart.setOption(option);
+           /* campusSqftChart.setOption(option);*/
             campusSqft2050PieOption.series[0].data = [
-                        {
-                            name:'Resid',
-                            itemStyle: {
-                                color: 'rgba(128, 0, 0,.8)'
-                            },
-                            value:buildingSpace.residLayer.sqft[buildingSpace.residLayer.sqft.length-1]
-                        },
-                        {
-                            name:'Class',
-                            itemStyle: {
-                                color: 'rgba(0, 128, 128,.8)'
-                            },
-                            value:buildingSpace.classLayer.sqft[buildingSpace.classLayer.sqft.length-1]
-                        },
-                        {
-                            name:'Lab',
-                            itemStyle: {
-                                color: 'rgba(64, 0, 128,.8)'
-                            },
-                            value:buildingSpace.labLayer.sqft[buildingSpace.labLayer.sqft.length-1]
-                        },
-                        {
-                            name:'Other',
-                            itemStyle: {
-                                color: 'rgba(128, 128, 128,.8)'
-                            },
-                            value:elementWiseAdd(elementWiseAdd(buildingSpace.healthLayer.sqft,buildingSpace.plantLayer.sqft),buildingSpace.other.sqft)[buildingSpace.labLayer.sqft.length-1]
-                        }
-                    ];
+                {
+                    name:'Resid',
+                    itemStyle: {
+                        color: 'rgba(128, 0, 0,.8)'
+                    },
+                    value:buildingSpace.residLayer.sqft[buildingSpace.residLayer.sqft.length-1]
+                },
+                {
+                    name:'Class',
+                    itemStyle: {
+                        color: 'rgba(0, 128, 128,.8)'
+                    },
+                    value:buildingSpace.classLayer.sqft[buildingSpace.classLayer.sqft.length-1]
+                },
+                {
+                    name:'Lab',
+                    itemStyle: {
+                        color: 'rgba(64, 0, 128,.8)'
+                    },
+                    value:buildingSpace.labLayer.sqft[buildingSpace.labLayer.sqft.length-1]
+                },
+                {
+                    name:'Other',
+                    itemStyle: {
+                        color: 'rgba(128, 128, 128,.8)'
+                    },
+                    value:elementWiseAdd(elementWiseAdd(buildingSpace.healthLayer.sqft,buildingSpace.plantLayer.sqft),buildingSpace.other.sqft)[buildingSpace.labLayer.sqft.length-1]
+                }
+            ];
+            campusSqft2050PieOption.title.text = '2050 - ' + Math.round(buildingSpace.totalSqft[42]/1000000) + ' MMsqft';
+            campusSqft2050PieOption.series[0].radius = Math.sqrt(Math.round(buildingSpace.totalSqft[42]/1000000)/53)*.8*100 + '%';
             campusSqft2050PieChart.setOption(campusSqft2050PieOption);
             wedgePlot.setOption(wedgePlotOption);
+            scopesWedgePlot.setOption(scopesWedgePlotOption);
+            normalizedEmissionsPlotOption = normalizedEmissionsPlot.getOption();
+            normalizedEmissionsPlot.setOption(normalizedEmissionsPlotOption);
             
             $("#totalEmissionsDisplay").text(Math.round(sumArray(emissions.scope1,33) + sumArray(emissions.scope2,33) + sumArray(emissions.scope3,33)));
             $("#2050EmissionsDisplay").text(Math.round(emissions.scope1[emissions.scope1.length-1] + emissions.scope2[emissions.scope2.length-1] + emissions.scope3[emissions.scope3.length-1]));
@@ -4706,6 +5073,7 @@
             //wedgePlotOption.series[1].data = emissions.scope2;
             wedgePlotOption = wedgePlot.getOption();
             scopesWedgePlotOption = scopesWedgePlot.getOption();
+            normalizedEmissionsPlotOption = normalizedEmissionsPlot.getOption();
             if(emissionsEnergy==='emissions'){
                 wedgePlotOption.series[0].data = [...emissions.totalEmissions];
                 wedgePlotOption.series[1].data = [...scenarios.led.getNetCost()[1]];
@@ -4720,6 +5088,24 @@
                 scopesWedgePlotOption.series[0].data = [...emissions.scope1];
                 scopesWedgePlotOption.series[1].data = [...emissions.scope2];
                 scopesWedgePlotOption.series[2].data = [...emissions.scope3];
+                
+                if($('#normalizeBySqft').hasClass('activeToggleBtn')){
+                    normalizedEmissionsPlotOption.series[0].data = divide(multiply(emissions.totalEmissions,[1000]),divide(buildingSpace.totalSqft,[1000]));
+                    normalizedEmissionsPlotOption.title[0].text = 'Normalized Emissions';
+                    normalizedEmissionsPlotOption.yAxis = [
+                        {
+                            name: 'Emissions Per 1000sqft (tons/1000sqft)',
+                        }
+                    ];
+                }else if($('#normalizeBySqft').hasClass('inactiveToggleBtn')){
+                    normalizedEmissionsPlotOption.series[0].data = divide(multiply(emissions.totalEmissions,[1000]),parseValues(interpolateArray(BAUGrowth.studentGrowth.selected)));
+                    normalizedEmissionsPlotOption.title[0].text = 'Normalized Emissions';
+                    normalizedEmissionsPlotOption.yAxis = [
+                        {
+                            name: 'Emissions Per Student (tons/student)',
+                        }
+                    ];
+                }
             }else if(emissionsEnergy==='energy'){
                 wedgePlotOption.series[0].data = divide(elementWiseAdd(emissions.totalEmissions,scenarios.natureConservancy.getNetCost()[1]),emissions.emissionsFactors.selected);
                 wedgePlotOption.series[1].data = divide([...scenarios.led.getNetCost()[1]],emissions.emissionsFactors.selected);
@@ -4739,9 +5125,28 @@
                 scopesWedgePlotOption.series[2].data = divide(elementWiseAdd(emissions.scope3,[...scenarios.natureConservancy.getNetCost()[1]]),emissions.emissionsFactors.selected);
                 scenarios.natureConservancy.conversionRate = realOffsets;
                 [buildingSpace, emissions] = calculateEmissions(buildingSpace,emissions,scenarios);
+                
+                if($('#normalizeBySqft').hasClass('activeToggleBtn')){
+                    normalizedEmissionsPlotOption.series[0].data = divide(buildingSpace.kWh,buildingSpace.totalSqft);
+                    normalizedEmissionsPlotOption.title[0].text = 'Normalized Energy';
+                    normalizedEmissionsPlotOption.yAxis = [
+                        {
+                            name: 'Energy Per Sqft (kWh/sqft)',
+                        }
+                    ];
+                }else if($('#normalizeBySqft').hasClass('inactiveToggleBtn')){
+                    normalizedEmissionsPlotOption.series[0].data = divide(buildingSpace.kWh,parseValues(interpolateArray(BAUGrowth.studentGrowth.selected)));
+                    normalizedEmissionsPlotOption.title[0].text = 'Normalized Energy';
+                    normalizedEmissionsPlotOption.yAxis = [
+                        {
+                            name: 'Energy Per Student (kWh/student)',
+                        }
+                    ];
+                }
             }
             wedgePlot.setOption(wedgePlotOption);
             scopesWedgePlot.setOption(scopesWedgePlotOption);
+            normalizedEmissionsPlot.setOption(normalizedEmissionsPlotOption);
             
             MACPlotOption = updateMACPlot(scenarios,MACPlotOption,$("#calculationPeriodSlider").val());
 			MACPlot.setOption(MACPlotOption);
@@ -4753,7 +5158,10 @@
             SavingsVCostPlotOption.series[4].data = [[NaN,NaN],[sumArray(scenarios.smartLabs.getNetCost()[3],$("#calculationPeriodSlider").val()),sumArray(scenarios.smartLabs.getNetCost()[2],$("#calculationPeriodSlider").val())]];
 			SavingsVCostPlotOption.series[5].data = [[NaN,NaN],[sumArray(scenarios.electricFleet.getNetCost()[3],$("#calculationPeriodSlider").val()),sumArray(scenarios.electricFleet.getNetCost()[2],$("#calculationPeriodSlider").val())]];
 			SavingsVCostPlotOption.series[6].data = [[NaN,NaN],[sumArray(scenarios.electricCommute.getNetCost()[3],$("#calculationPeriodSlider").val()),sumArray(scenarios.electricCommute.getNetCost()[2],$("#calculationPeriodSlider").val())]];
-			SavingsVCostPlot.setOption(SavingsVCostPlotOption);			
+			SavingsVCostPlot.setOption(SavingsVCostPlotOption);	
+            
+            netCostPlotOption.series[0].data = elementWiseAdd(elementWiseAdd(elementWiseAdd(elementWiseAdd(elementWiseAdd(elementWiseAdd(elementWiseAdd(scenarios.led.getNetCost()[0],scenarios.natureConservancy.getNetCost()[0]),scenarios.plantAutomation.getNetCost()[0]),scenarios.solarRoof.getNetCost()[0]),scenarios.commissioning.getNetCost()[0]),scenarios.electricFleet.getNetCost()[0]),scenarios.electricCommute.getNetCost()[0]),scenarios.smartLabs.getNetCost()[0]);
+            netCostPlot.setOption(netCostPlotOption);
             
             $("#totalEmissionsDisplay").text(Math.round(sumArray(emissions.scope1,33) + sumArray(emissions.scope2,33) + sumArray(emissions.scope3,33)));
             $("#2050EmissionsDisplay").text(Math.round(emissions.scope1[emissions.scope1.length-1] + emissions.scope2[emissions.scope2.length-1] + emissions.scope3[emissions.scope3.length-1]));

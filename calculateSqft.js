@@ -32,7 +32,7 @@ function calculateSqft(buildingSpace,BAUGrowth){
     }
     for(let i=0;i<buildingSpace.year.length;i++){
         //other is kept constant and pinned to 2017 data
-        buildingSpace.other.sqft[i] = (buildingSpace.labLayer.sqft[9] + buildingSpace.classLayer.sqft[9] + buildingSpace.healthLayer.sqft[9] + buildingSpace.residLayer.sqft[9] + buildingSpace.plantLayer.sqft[9])*(1/0.93-1)
+        buildingSpace.other.sqft[i] = (buildingSpace.labLayer.sqft[10] + buildingSpace.classLayer.sqft[10] + buildingSpace.healthLayer.sqft[10] + buildingSpace.residLayer.sqft[10] + buildingSpace.plantLayer.sqft[10])*(1/0.93-1)
 		
         buildingSpace.totalSqft[i] = (buildingSpace.labLayer.sqft[i] + buildingSpace.classLayer.sqft[i] + buildingSpace.healthLayer.sqft[i] + buildingSpace.residLayer.sqft[i] + buildingSpace.plantLayer.sqft[i] + buildingSpace.other.sqft[i]);
     }
