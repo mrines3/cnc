@@ -1,11 +1,6 @@
 *{
  font-family: Verdana, Geneva, sans-serif;
-}
-.column-header{
-    font-family: Impact, Charcoal, sans-serif;
-}
-.tab-header{
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+ font-size: large;
 }
 /*.demoBtns{
     -webkit-transition: height 0.01s;
@@ -38,11 +33,11 @@
 }
 .inactiveTab{
     background-color:rgb(175,202,235);
-    color:darkblue;
+    color:rgb(0,17,34);
     font-size:110%;
 }
 .inactiveTab:hover{
-    background-color:darkblue;
+    background-color:rgb(0,17,34);
     color:white;
 }
 .activeProject{
@@ -54,11 +49,11 @@
 }
 .inactiveProject{
     background-color:rgb(175,202,235);
-    color: darkblue;
+    color: rgb(0,17,34);
     font-weight: 550;
 }
 .inactiveProject:hover{
-    background-color:darkblue;
+    background-color:rgb(0,17,34);
     color:white;
 }
 .activeToggleBtn{
@@ -79,7 +74,7 @@
     left: 0;
     display: none;
      width: 20px;
-    background-color: black;
+    background-color: rgb(0,17,34);
     color: #fff;
     text-align: center;
     padding: 5px 5px;

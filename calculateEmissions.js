@@ -5,7 +5,20 @@ function calculateEmissions(buildingSpace,emissions,scenarios){
     let healthEnergy = [];
     let plantEnergy = [];
     let totalEnergy = [];
-    let elecFudgeFactor = buildingSpace.elecFudgeFactor;
+    labLightEUI = interpolateArray(buildingSpace.labLayer.lightEUI);
+    labHVACEUI = interpolateArray(buildingSpace.labLayer.hvacEUI);
+    labPlugEUI = interpolateArray(buildingSpace.labLayer.plugEUI);
+    residLightEUI = interpolateArray(buildingSpace.residLayer.lightEUI);
+    residHVACEUI = interpolateArray(buildingSpace.residLayer.hvacEUI);
+    residPlugEUI = interpolateArray(buildingSpace.residLayer.plugEUI);
+    classLightEUI = interpolateArray(buildingSpace.classLayer.lightEUI);
+    classHVACEUI = interpolateArray(buildingSpace.classLayer.hvacEUI);
+    classPlugEUI = interpolateArray(buildingSpace.classLayer.plugEUI);
+    healthLightEUI = interpolateArray(buildingSpace.healthLayer.lightEUI);
+    healthHVACEUI = interpolateArray(buildingSpace.healthLayer.hvacEUI);
+    healthPlugEUI = interpolateArray(buildingSpace.healthLayer.plugEUI);
+    plantEUI = interpolateArray(buildingSpace.plantLayer.EUI);
+    
     ledKFactors = scenarios.led.getKFactors();
     solarRoofAddkWh = scenarios.solarRoof.getAddKWh();
 	commissioningKFactors = scenarios.commissioning.getKFactors();
@@ -15,6 +28,7 @@ function calculateEmissions(buildingSpace,emissions,scenarios){
     electricCommuteAddkWh = scenarios.electricCommute.getKFactors()[1];
     electricFleetKFactors = scenarios.electricFleet.getKFactors()[0];
     electricFleetAddkWh = scenarios.electricFleet.getKFactors()[1];
+    codaAddkWh = scenarios.coda.getAddSqft()[1];
     //gaPowerSimpleSolarKFactors = scenarios.gaPowerSimpleSolar.getKFactors();
     natureConservancyKFactors = scenarios.natureConservancy.getKFactors();
     
@@ -73,13 +87,18 @@ function calculateEmissions(buildingSpace,emissions,scenarios){
         emissions.scope1[i] = natureConservancyKFactors[i]*((1-(1-electricFleetKFactors[i]+1-commissioningKFactors[i]))*emissions.scope1HeatingFraction*emissions.scope1EfficiencyFactor[i]*buildingSpace.totalSqft[i]*(emissions.scope1Default[6]/buildingSpace.totalSqft[6]) + emissions.scope1FleetFraction*(studentGrowth[i][1]+facultyGrowth[i][1])*(emissions.scope1Default[6]/(studentGrowth[6][1]+facultyGrowth[6][1])));
         
         //Scope 2
-		labEnergy[i] = buildingSpace.labLayer.sqft[i]*((1-(1-ledKFactors[i]+1-commissioningKFactors[i]))*buildingSpace.labLayer.lightEUI[i]+(1-(1-commissioningKFactors[i]+1-smartLabsKFactors[i]))*buildingSpace.labLayer.hvacEUI[i]+commissioningKFactors[i]*buildingSpace.labLayer.plugEUI[i]);
-		residEnergy[i] = buildingSpace.residLayer.sqft[i]*((1-(1-ledKFactors[i]+1-commissioningKFactors[i]))*buildingSpace.residLayer.lightEUI[i]+commissioningKFactors[i]*buildingSpace.residLayer.hvacEUI[i]+commissioningKFactors[i]*buildingSpace.residLayer.plugEUI[i]);
-		classEnergy[i] = buildingSpace.classLayer.sqft[i]*((1-(1-ledKFactors[i]+1-commissioningKFactors[i]))*buildingSpace.classLayer.lightEUI[i]+commissioningKFactors[i]*buildingSpace.classLayer.hvacEUI[i]+commissioningKFactors[i]*buildingSpace.classLayer.plugEUI[i]);
-		healthEnergy[i] = buildingSpace.healthLayer.sqft[i]*((1-(1-ledKFactors[i]+1-commissioningKFactors[i]))*buildingSpace.healthLayer.lightEUI[i]+commissioningKFactors[i]*buildingSpace.healthLayer.hvacEUI[i]+commissioningKFactors[i]*buildingSpace.healthLayer.plugEUI[i]);
-		plantEnergy[i] = buildingSpace.plantLayer.sqft[i]*(1-(1-plantAutomationKFactors[i]+1-commissioningKFactors[i]))*buildingSpace.plantLayer.EUI[i];
-		totalEnergy[i] = elecFudgeFactor*(labEnergy[i]+residEnergy[i]+classEnergy[i]+healthEnergy[i]+plantEnergy[i]);
-		buildingSpace.kWh[i] = totalEnergy[i] - solarRoofAddkWh[i] + electricCommuteAddkWh[i] + electricFleetAddkWh[i];
+		labEnergy[i] = buildingSpace.labLayer.sqft[i]*((1-(1-ledKFactors[i]+1-commissioningKFactors[i]))*labLightEUI[i][1]+(1-(1-commissioningKFactors[i]+1-smartLabsKFactors[i]))*labHVACEUI[i][1]+commissioningKFactors[i]*labPlugEUI[i][1]);
+        
+        residEnergy[i] = buildingSpace.residLayer.sqft[i]*((1-(1-ledKFactors[i]+1-commissioningKFactors[i]))*residLightEUI[i][1]+commissioningKFactors[i]*residHVACEUI[i][1]+commissioningKFactors[i]*residPlugEUI[i][1]);
+		
+        classEnergy[i] = buildingSpace.classLayer.sqft[i]*((1-(1-ledKFactors[i]+1-commissioningKFactors[i]))*classLightEUI[i][1]+commissioningKFactors[i]*classHVACEUI[i][1]+commissioningKFactors[i]*classPlugEUI[i][1]);
+		
+        healthEnergy[i] = buildingSpace.healthLayer.sqft[i]*((1-(1-ledKFactors[i]+1-commissioningKFactors[i]))*healthLightEUI[i][1]+commissioningKFactors[i]*healthHVACEUI[i][1]+commissioningKFactors[i]*healthPlugEUI[i][1]);
+		
+        plantEnergy[i] = buildingSpace.plantLayer.sqft[i]*(1-(1-plantAutomationKFactors[i]+1-commissioningKFactors[i]))*plantEUI[i][1];
+		
+        totalEnergy[i] = (labEnergy[i]+residEnergy[i]+classEnergy[i]+healthEnergy[i]+plantEnergy[i]);
+		buildingSpace.kWh[i] = totalEnergy[i] - solarRoofAddkWh[i] + electricCommuteAddkWh[i] + electricFleetAddkWh[i] + codaAddkWh[i];
 		
         emissions.scope2[i] = natureConservancyKFactors[i]*(buildingSpace.kWh[i]*emissions.emissionsFactors.selected[i]/1000000);
         
