@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="row">
-        <div class="collapse tabs-2" id="tabs-2Content" data-parent="#tabs">
+        <div class="collapse tabs-2 w-100" id="tabs-2Content" data-parent="#tabs">
           <font color="white">
           <div id="tab2Banner" class="container-fluid p-0" style="background-image: linear-gradient(to right, rgba(184,134,11,1) , rgba(184,134,11,.6));position:relative;width:100%">
               <div class="row">
@@ -753,6 +753,8 @@
                                     <li>Implementing cost effective scenarios reduces the cost of offsets to $80MM and net savings are $80MM</li>
                                 </ul>
                                 <ul class="scenario-9 collapse" data-parent="#scenarioColumn" style="padding-left:10%">
+                                    <li>The Coda building is expected to increase cumulative emissions by 108 kTons from 2019 to 2050.</li>
+                                    <li>Electricity consumption is expected to increase by 5.3 GWh each year.</li>
                                 </ul>
                             </div>
                         </div>
@@ -811,7 +813,9 @@
                         <div class="row">
                             <p class="mt-0 mx-auto" style=""><b>Georgia Tech: 1908 to 2018</b></p>
                         </div>
-                        <img class="img-fluid mx-auto mt-auto" src="./pictures/campusGrowthAnimation.gif" style="border-radius:1%;">
+                        <div class="row mx-auto">
+                            <img class="img-fluid mx-auto mt-auto" id="campusGrowthAnimation" src="./pictures/campusGrowthAnimation.gif" style="border-radius:1%;">
+                        </div>
                     </div>
                     <div id="1908PieCol" class="col-lg-2 mt-0 mx-auto">
                         <div class="row mt-0 pt-0">
@@ -4093,6 +4097,7 @@
             $('#campusSqft2018PiePlot').height(pieColumnWidth);
             $('#campusSqft2050PiePlot').width(pieColumnWidth);
             $('#campusSqft2050PiePlot').height(pieColumnWidth);
+            $('#campusGrowthAnimation').height(pieColumnWidth);
             $('#studentGrowthPlot').width(growthPlotColumnWidth);
             $('#studentGrowthPlot').height(growthPlotColumnWidth*0.5);
             $('#facultyGrowthPlot').width(growthPlotColumnWidth);
@@ -4111,10 +4116,6 @@
             $('#electricFleetPlot').width(scenarioColumnWidth);
             $('#electricCommutePlot').width(scenarioColumnWidth);
             $('#natureConservancyPlot').width(scenarioColumnWidth);
-            $('#ledCarousel').height(projectBtnsHeight);
-            $('#solarRoofCarousel').height(projectBtnsHeight);
-            $('#plantAutomationCarousel').height(projectBtnsHeight);
-            $('#commissioningCarousel').height(projectBtnsHeight);
             $('.carouselImg').height(Math.min(projectBtnsHeight-demoBtnHeight,0.666*demoBtnWidth));
             //get correct chart height and set plot areas to this
             /*let chartHeight = 300;
